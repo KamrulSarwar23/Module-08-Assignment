@@ -6,33 +6,35 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function index(string $id)
+    public function index($id)
     {
 
-        dd(exec('getmac'));
-        
-        $name = "Donal Trump";
-        $age = "75";
+        $name = "Kamrul Hasan";
+        $age = "28";
 
         $data = [
-            'id' => $id,
-            'name' => $name,
-            'age' => $age,
+            "id" => $id,
+            "name" => $name,
+            "age" => $age,
         ];
 
-        $cookieName = 'Laravel-Course-Token';
-        $cookieValue = 'Ostad-123';
+        $cookieName = 'access_token';
+        $cookieValue = '123-XYZ';
         $minutes = 1;
         $path = '/';
         $domain = $_SERVER['SERVER_NAME'];
         $secure = true;
         $httpOnly = true;
 
-        $cookie = cookie($cookieName, $cookieValue, $minutes, $path, $domain, $secure, $httpOnly);
-
-        $response = response('Cookie has been set.', 200);
-
-        $response->withCookie($cookie);
+        $response = response()->json($data)->cookie(
+            $cookieName,
+            $cookieValue,
+            $minutes,
+            $path,
+            $domain,
+            $secure,
+            $httpOnly
+        );
 
         return $response;
     }
