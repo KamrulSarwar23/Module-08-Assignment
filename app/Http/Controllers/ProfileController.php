@@ -8,12 +8,16 @@ class ProfileController extends Controller
 {
     public function index(string $id)
     {
+
+        dd(exec('getmac'));
+        
         $name = "Donal Trump";
         $age = "75";
 
         $data = [
-            "name" => $name,
-            "age" => $age,
+            'id' => $id,
+            'name' => $name,
+            'age' => $age,
         ];
 
         $cookieName = 'Laravel-Course-Token';
